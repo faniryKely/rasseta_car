@@ -14,9 +14,10 @@ import org.springframework.web.bind.annotation.*;
 
 import java.math.BigDecimal;
 import java.util.List;
+import java.util.Optional;
 
-@RestController
-@RequestMapping("/car_show/car")
+@RestController     
+@RequestMapping("/car")
 @AllArgsConstructor
 @CrossOrigin
 public class CarController {
@@ -87,6 +88,11 @@ public class CarController {
         headers.add("X-Total-Count", Long.toString(carPage.getTotalElements()));
 
         return ResponseEntity.ok().headers(headers).body(carPage.getContent());
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<Optional<Car>> searchCarByCarId(@PathVariable int id) {
+        return ResponseEntity.ok(carService.findById(id));
     }
 
     @PutMapping("/{id}")

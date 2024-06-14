@@ -13,9 +13,10 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
-@RequestMapping("/car_show/image")
+@RequestMapping("/image")
 @AllArgsConstructor
 public class ImagesController {
 
@@ -60,6 +61,11 @@ public class ImagesController {
         headers.add("X-Total-Count", Long.toString(imagesPage.getTotalElements()));
 
         return ResponseEntity.ok().headers(headers).body(imagesPage.getContent());
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<Optional<Images>> searchImageByImageId(@PathVariable int id) {
+        return ResponseEntity.ok(imagesService.findById(id));
     }
 
     @PutMapping("/{id}")

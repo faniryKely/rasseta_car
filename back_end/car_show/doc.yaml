@@ -1,0 +1,1165 @@
+openapi: 3.0.3
+info:
+  title: Car Show
+  description: Car Show API
+  version: 1.0.0
+servers:
+  - url: 'http://localhost:8080'
+paths:
+  
+  /car_show/brand:
+    get:
+      summary: "GET car_show/brand"
+      operationId: "searchBrand"
+      parameters:
+        - name: "brandId"
+          in: "query"
+          required: false
+          schema:
+            type: "integer"
+            format: "int32"
+        - name: "name"
+          in: "query"
+          required: false
+          schema:
+            type: "string"
+        - name: "page"
+          in: "query"
+          required: false
+          schema:
+            type: "integer"
+            format: "int32"
+            default: "0"
+        - name: "limit"
+          in: "query"
+          required: false
+          schema:
+            type: "integer"
+            format: "int32"
+            default: "6"
+      responses:
+        "200":
+          description: "OK"
+          content:
+            '*/*':
+              schema:
+                type: "array"
+                items:
+                  $ref: "#/components/schemas/Brand"
+    post:
+      summary: "POST car_show/brand"
+      operationId: "createBrand"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Brand"
+        required: true
+      responses:
+        "200":
+          description: "OK"
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/Brand"
+
+  /car_show/brand/{id}:
+    put:
+      summary: "PUT car_show/brand/{id}"
+      operationId: "updateBrand"
+      parameters:
+        - name: "id"
+          in: "path"
+          required: true
+          schema:
+            type: "integer"
+            format: "int32"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Brand"
+        required: true
+      responses:
+        "200":
+          description: "OK"
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/Brand"
+    delete:
+      summary: "DELETE car_show/brand/{id}"
+      operationId: "deleteBrand"
+      parameters:
+        - name: "id"
+          in: "path"
+          required: true
+          schema:
+            type: "integer"
+            format: "int32"
+      responses:
+        "200":
+          description: "OK"
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/Void"
+
+  /car_show/carType:
+    get:
+      summary: "GET car_show/carType"
+      operationId: "searchCarType"
+      parameters:
+        - name: "carTypeId"
+          in: "query"
+          required: false
+          schema:
+            type: "integer"
+            format: "int32"
+        - name: "name"
+          in: "query"
+          required: false
+          schema:
+            type: "string"
+        - name: "page"
+          in: "query"
+          required: false
+          schema:
+            type: "integer"
+            format: "int32"
+            default: "0"
+        - name: "limit"
+          in: "query"
+          required: false
+          schema:
+            type: "integer"
+            format: "int32"
+            default: "6"
+      responses:
+        "200":
+          description: "OK"
+          content:
+            '*/*':
+              schema:
+                type: "array"
+                items:
+                  $ref: "#/components/schemas/CarTypes"
+    post:
+      summary: "POST car_show/carType"
+      operationId: "createCarType"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CarTypes"
+        required: true
+      responses:
+        "200":
+          description: "OK"
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/CarTypes"
+
+  /car_show/carType/{id}:
+    put:
+      summary: "PUT car_show/carType/{id}"
+      operationId: "updateCarType"
+      parameters:
+        - name: "id"
+          in: "path"
+          required: true
+          schema:
+            type: "integer"
+            format: "int32"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CarTypes"
+        required: true
+      responses:
+        "200":
+          description: "OK"
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/CarTypes"
+    delete:
+      summary: "DELETE car_show/carType/{id}"
+      operationId: "deleteCarType"
+      parameters:
+        - name: "id"
+          in: "path"
+          required: true
+          schema:
+            type: "integer"
+            format: "int32"
+      responses:
+        "200":
+          description: "OK"
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/Void"
+
+  /car_show/motorType:
+    get:
+      summary: "GET car_show/motorType"
+      operationId: "searchMotorType"
+      parameters:
+        - name: "motorTypeId"
+          in: "query"
+          required: false
+          schema:
+            type: "integer"
+            format: "int32"
+        - name: "name"
+          in: "query"
+          required: false
+          schema:
+            type: "string"
+        - name: "page"
+          in: "query"
+          required: false
+          schema:
+            type: "integer"
+            format: "int32"
+            default: "0"
+        - name: "limit"
+          in: "query"
+          required: false
+          schema:
+            type: "integer"
+            format: "int32"
+            default: "6"
+      responses:
+        "200":
+          description: "OK"
+          content:
+            '*/*':
+              schema:
+                type: "array"
+                items:
+                  $ref: "#/components/schemas/MotorTypes"
+    post:
+      summary: "POST car_show/motorType"
+      operationId: "createMotorType"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/MotorTypes"
+        required: true
+      responses:
+        "200":
+          description: "OK"
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/MotorTypes"
+
+  /car_show/motorType/{id}:
+    put:
+      summary: "PUT car_show/motorType/{id}"
+      operationId: "updateMotorType"
+      parameters:
+        - name: "id"
+          in: "path"
+          required: true
+          schema:
+            type: "integer"
+            format: "int32"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/MotorTypes"
+        required: true
+      responses:
+        "200":
+          description: "OK"
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/MotorTypes"
+    delete:
+      summary: "DELETE car_show/motorType/{id}"
+      operationId: "deleteMotorType"
+      parameters:
+        - name: "id"
+          in: "path"
+          required: true
+          schema:
+            type: "integer"
+            format: "int32"
+      responses:
+        "200":
+          description: "OK"
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/Void"
+
+  /car_show/car:
+    get:
+      summary: "GET car_show/car"
+      operationId: "filterCar"
+      parameters:
+        - name: "name"
+          in: "query"
+          required: false
+          schema:
+            type: "string"
+        - name: "model"
+          in: "query"
+          required: false
+          schema:
+            type: "string"
+        - name: "price"
+          in: "query"
+          required: false
+          schema:
+            $ref: "#/components/schemas/BigDecimal"
+        - name: "color"
+          in: "query"
+          required: false
+          schema:
+            type: "string"
+        - name: "power"
+          in: "query"
+          required: false
+          schema:
+            type: "integer"
+            format: "int32"
+        - name: "placeNumber"
+          in: "query"
+          required: false
+          schema:
+            type: "integer"
+            format: "int32"
+        - name: "status"
+          in: "query"
+          required: false
+          schema:
+            type: "boolean"
+        - name: "brandId"
+          in: "query"
+          required: false
+          schema:
+            type: "string"
+        - name: "carTypeId"
+          in: "query"
+          required: false
+          schema:
+            type: "string"
+        - name: "motorTypeId"
+          in: "query"
+          required: false
+          schema:
+            type: "string"
+        - name: "minCost"
+          in: "query"
+          required: false
+          schema:
+            $ref: "#/components/schemas/BigDecimal"
+        - name: "maxCost"
+          in: "query"
+          required: false
+          schema:
+            $ref: "#/components/schemas/BigDecimal"
+        - name: "page"
+          in: "query"
+          required: false
+          schema:
+            type: "integer"
+            format: "int32"
+            default: "0"
+        - name: "size"
+          in: "query"
+          required: false
+          schema:
+            type: "integer"
+            format: "int32"
+            default: "10"
+      responses:
+        "200":
+          description: "OK"
+          content:
+            '*/*':
+              schema:
+                type: "array"
+                items:
+                  $ref: "#/components/schemas/Car"
+    post:
+      summary: "POST car_show/car"
+      operationId: "createCar"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Car"
+        required: true
+      responses:
+        "200":
+          description: "OK"
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/Car"
+
+  /car_show/car/{id}:
+    put:
+      summary: "PUT car_show/car/{id}"
+      operationId: "updateCar"
+      parameters:
+        - name: "id"
+          in: "path"
+          required: true
+          schema:
+            type: "integer"
+            format: "int32"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Car"
+        required: true
+      responses:
+        "200":
+          description: "OK"
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/Car"
+    delete:
+      summary: "DELETE car_show/car/{id}"
+      operationId: "deleteCar"
+      parameters:
+        - name: "id"
+          in: "path"
+          required: true
+          schema:
+            type: "integer"
+            format: "int32"
+      responses:
+        "200":
+          description: "OK"
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/Void"
+
+  /car_show/image:
+    get:
+      summary: "GET car_show/image"
+      operationId: "searchImage"
+      parameters:
+        - name: "imageId"
+          in: "query"
+          required: false
+          schema:
+            type: "integer"
+            format: "int32"
+        - name: "url"
+          in: "query"
+          required: false
+          schema:
+            type: "string"
+        - name: "carId"
+          in: "query"
+          required: false
+          schema:
+            type: "integer"
+            format: "int32"
+        - name: "brandId"
+          in: "query"
+          required: false
+          schema:
+            type: "integer"
+            format: "int32"
+        - name: "page"
+          in: "query"
+          required: false
+          schema:
+            type: "integer"
+            format: "int32"
+            default: "0"
+        - name: "limit"
+          in: "query"
+          required: false
+          schema:
+            type: "integer"
+            format: "int32"
+            default: "6"
+      responses:
+        "200":
+          description: "OK"
+          content:
+            '*/*':
+              schema:
+                type: "array"
+                items:
+                  $ref: "#/components/schemas/Images"
+    post:
+      summary: "POST car_show/image"
+      operationId: "createImage"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Images"
+        required: true
+      responses:
+        "200":
+          description: "OK"
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/Images"
+
+  /car_show/image/{id}:
+    put:
+      summary: "PUT car_show/image/{id}"
+      operationId: "updateImage"
+      parameters:
+        - name: "id"
+          in: "path"
+          required: true
+          schema:
+            type: "integer"
+            format: "int32"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Images"
+        required: true
+      responses:
+        "200":
+          description: "OK"
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/Images"
+    delete:
+      summary: "DELETE car_show/image/{id}"
+      operationId: "deleteImage"
+      parameters:
+        - name: "id"
+          in: "path"
+          required: true
+          schema:
+            type: "integer"
+            format: "int32"
+      responses:
+        "200":
+          description: "OK"
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/Void"
+
+  /car_show/appointment:
+    get:
+      summary: "GET car_show/appointment"
+      operationId: "searchAppointment"
+      parameters:
+        - name: "appointmentId"
+          in: "query"
+          required: false
+          schema:
+            type: "integer"
+            format: "int32"
+        - name: "name"
+          in: "query"
+          required: false
+          schema:
+            type: "string"
+        - name: "firstName"
+          in: "query"
+          required: false
+          schema:
+            type: "string"
+        - name: "email"
+          in: "query"
+          required: false
+          schema:
+            type: "string"
+        - name: "message"
+          in: "query"
+          required: false
+          schema:
+            type: "string"
+        - name: "contact"
+          in: "query"
+          required: false
+          schema:
+            type: "string"
+        - name: "appointmentDate"
+          in: "query"
+          required: false
+          schema:
+            type: "string"
+            format: "date"
+        - name: "status"
+          in: "query"
+          required: false
+          schema:
+            type: "string"
+            enum:
+              - "PENDING"
+              - "VALIDATED"
+              - "REJECTED"
+              - "ARCHIVED"
+        - name: "carId"
+          in: "query"
+          required: false
+          schema:
+            type: "integer"
+            format: "int32"
+        - name: "page"
+          in: "query"
+          required: false
+          schema:
+            type: "integer"
+            format: "int32"
+            default: "0"
+        - name: "limit"
+          in: "query"
+          required: false
+          schema:
+            type: "integer"
+            format: "int32"
+            default: "6"
+      responses:
+        "200":
+          description: "OK"
+          content:
+            '*/*':
+              schema:
+                type: "array"
+                items:
+                  $ref: "#/components/schemas/Appointment"
+    post:
+      summary: "POST car_show/appointment"
+      operationId: "createAppointment"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Appointment"
+        required: true
+      responses:
+        "200":
+          description: "OK"
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/Appointment"
+
+  /car_show/appointment/{id}:
+    put:
+      summary: "PUT car_show/appointment/{id}"
+      operationId: "updateAppointment"
+      parameters:
+        - name: "id"
+          in: "path"
+          required: true
+          schema:
+            type: "integer"
+            format: "int32"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Appointment"
+        required: true
+      responses:
+        "200":
+          description: "OK"
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/Appointment"
+    delete:
+      summary: "DELETE car_show/appointment/{id}"
+      operationId: "deleteAppointment"
+      parameters:
+        - name: "id"
+          in: "path"
+          required: true
+          schema:
+            type: "integer"
+            format: "int32"
+      responses:
+        "200":
+          description: "OK"
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/Void"
+
+  /auth/login:
+    post:
+      summary: "POST auth/login"
+      operationId: "login"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/AuthenticationDto"
+        required: true
+      responses:
+        "200":
+          description: "OK"
+          content:
+            '*/*':
+              schema:
+                type: "string"
+
+  /auth/register:
+    post:
+      summary: "POST auth/register"
+      operationId: "register"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/User"
+        required: true
+      responses:
+        "200":
+          description: "OK"
+
+  /user:
+    get:
+      summary: "GET user"
+      operationId: "searchUser"
+      parameters:
+        - name: "page"
+          in: "query"
+          required: false
+          schema:
+            type: "integer"
+            format: "int32"
+            default: "0"
+        - name: "perPage"
+          in: "query"
+          required: false
+          schema:
+            type: "integer"
+            format: "int32"
+            default: "25"
+        - name: "userId"
+          in: "query"
+          required: false
+          schema:
+            type: "integer"
+            format: "int32"
+        - name: "name"
+          in: "query"
+          required: false
+          schema:
+            type: "string"
+        - name: "email"
+          in: "query"
+          required: false
+          schema:
+            type: "string"
+        - name: "password"
+          in: "query"
+          required: false
+          schema:
+            type: "string"
+      responses:
+        "200":
+          description: "OK"
+          content:
+            '*/*':
+              schema:
+                type: "array"
+                items:
+                  $ref: "#/components/schemas/User"
+    post:
+      summary: "POST user"
+      operationId: "createUser"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/User"
+        required: true
+      responses:
+        "200":
+          description: "OK"
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/User"
+
+  /user/{id}:
+    get:
+      summary: "GET user/{id}"
+      operationId: "searchUserById"
+      parameters:
+        - name: "id"
+          in: "path"
+          required: true
+          schema:
+            type: "integer"
+            format: "int32"
+      responses:
+        "200":
+          description: "OK"
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/User"
+    put:
+      summary: "PUT user/{id}"
+      operationId: "updateUser"
+      parameters:
+        - name: "id"
+          in: "path"
+          required: true
+          schema:
+            type: "integer"
+            format: "int32"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/User"
+        required: true
+      responses:
+        "200":
+          description: "OK"
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/User"
+    delete:
+      summary: "DELETE user/{id}"
+      operationId: "deleteUser"
+      parameters:
+        - name: "id"
+          in: "path"
+          required: true
+          schema:
+            type: "integer"
+            format: "int32"
+      responses:
+        "200":
+          description: "OK"
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/Void"
+
+  /car_show/role:
+    get:
+      summary: "GET car_show/role"
+      operationId: "searchRole"
+      parameters:
+        - name: "id"
+          in: "query"
+          required: false
+          schema:
+            type: "integer"
+            format: "int64"
+            default: "6"
+        - name: "page"
+          in: "query"
+          required: false
+          schema:
+            type: "integer"
+            format: "int32"
+            default: "0"
+        - name: "perPage"
+          in: "query"
+          required: false
+          schema:
+            type: "integer"
+            format: "int32"
+            default: "25"
+        - name: "roleId"
+          in: "query"
+          required: false
+          schema:
+            type: "integer"
+            format: "int32"
+        - name: "roleName"
+          in: "query"
+          required: false
+          schema:
+            type: "string"
+      responses:
+        "200":
+          description: "OK"
+          content:
+            '*/*':
+              schema:
+                type: "array"
+                items:
+                  $ref: "#/components/schemas/Role"
+    post:
+      summary: "POST car_show/role"
+      operationId: "createRole"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Role"
+        required: true
+      responses:
+        "200":
+          description: "OK"
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/Role"
+
+  /car_show/role/{id}:
+    put:
+      summary: "PUT car_show/role/{id}"
+      operationId: "updateRole"
+      parameters:
+        - name: "id"
+          in: "path"
+          required: true
+          schema:
+            type: "integer"
+            format: "int32"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Role"
+        required: true
+      responses:
+        "200":
+          description: "OK"
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/Role"
+    delete:
+      summary: "DELETE car_show/role/{id}"
+      operationId: "deleteRole"
+      parameters:
+        - name: "id"
+          in: "path"
+          required: true
+          schema:
+            type: "integer"
+            format: "int32"
+      responses:
+        "200":
+          description: "OK"
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/Void"
+
+  /users:
+    get:
+      summary: "GET users"
+      operationId: "searchUser"
+      parameters:
+        - name: "_start"
+          in: "query"
+          required: false
+          schema:
+            type: "integer"
+            format: "int32"
+            default: "0"
+        - name: "_end"
+          in: "query"
+          required: false
+          schema:
+            type: "integer"
+            format: "int32"
+            default: "25"
+        - name: "_order"
+          in: "query"
+          required: false
+          schema:
+            type: "string"
+            default: "ASC"
+        - name: "_sort"
+          in: "query"
+          required: false
+          schema:
+            type: "string"
+            default: "id"
+        - name: "userId"
+          in: "query"
+          required: false
+          schema:
+            type: "integer"
+            format: "int32"
+        - name: "name"
+          in: "query"
+          required: false
+          schema:
+            type: "string"
+        - name: "email"
+          in: "query"
+          required: false
+          schema:
+            type: "string"
+        - name: "password"
+          in: "query"
+          required: false
+          schema:
+            type: "string"
+        - name: "page"
+          in: "query"
+          required: false
+          schema:
+            type: "integer"
+            format: "int32"
+            default: "0"
+        - name: "limit"
+          in: "query"
+          required: false
+          schema:
+            type: "integer"
+            format: "int32"
+            default: "6"
+      responses:
+        "200":
+          description: "OK"
+          content:
+            '*/*':
+              schema:
+                type: "array"
+                items:
+                  $ref: "#/components/schemas/User"
+
+components:
+  schemas:
+    Role:
+      type: object
+      properties:
+        roleId:
+          type: integer
+        roleName:
+          type: string
+
+    Appointment:
+      type: object
+      properties:
+        appointmentId:
+          type: integer
+        name:
+          type: string
+        firstName:
+          type: string
+        email:
+          type: string
+        message:
+          type: string
+        contact:
+          type: string
+        appointmentDate:
+          type: string
+        status:
+          type: string
+        car:
+          type: object
+
+    Brand:
+      type: object
+      properties:
+        brandId:
+          type: number
+        name:
+          type: string
+        logoUrl:
+          type: string
+
+    Car:
+      type: object
+      properties:
+        carId:
+          type: number
+        name:
+          type: string
+        model:
+          type: string
+        price:
+          type: number
+        color:
+          type: string
+        power:
+          type: integer
+        placeNumber:
+          type: integer
+        status:
+          type: boolean
+        image:
+          type: array
+        brand:
+          type: object
+        carTypes:
+          type: object
+        motorTypes:
+          type: object
+
+    CarTypes:
+      type: object
+      properties:
+        carTypeId:
+          type: integer
+        name:
+          type: string
+
+    Images:
+      type: object
+      properties:
+        imageId:
+          type: integer
+        url:
+          type: string
+        car:
+          type: object
+        brand:
+          type: object
+
+    MotorTypes:
+      type: object
+      properties:
+        motorTypeId:
+          type: integer
+        name:
+          type: string
+
+    User:
+      type: object
+      properties:
+        userId:
+          type: integer
+        name:
+          type: string
+        email:
+          type: string
+        password:
+          type: string
+        isActive:
+          type: boolean
+
+    Void:
+      type: object
+
+    AuthenticationDto:
+      type: object
+      properties:
+        email:
+          type: string
+        password:
+          type: string
+
+    BigDecimal:
+      type: number

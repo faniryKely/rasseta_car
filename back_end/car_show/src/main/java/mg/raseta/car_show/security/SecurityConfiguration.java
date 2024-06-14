@@ -3,6 +3,7 @@ package mg.raseta.car_show.security;
 import lombok.AllArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
@@ -35,37 +36,21 @@ public class SecurityConfiguration {
     private final UserDetailsService userDetailsService;
 
     @Bean
+    public MappingJackson2HttpMessageConverter mappingJackson2HttpMessageConverter() {
+        return new MappingJackson2HttpMessageConverter();
+    }
+
+    @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception {
         return httpSecurity
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(
                         authorize ->
                                 authorize
-                                        .requestMatchers(GET, "/car_show/**").permitAll()
-                                        .requestMatchers(POST, "/car_show/**").permitAll()
-                                        .requestMatchers(PUT, "/car_show/**").permitAll()
-                                        .requestMatchers(DELETE, "/car_show/**").permitAll()
-
-                                        .requestMatchers(GET, "/car_show/brand/").permitAll()
-                                        .requestMatchers(PUT, "/car_show/brand/").permitAll()
-                                        .requestMatchers(DELETE, "/car_show/brand/").permitAll()
-
-                                        .requestMatchers(POST, "/auth/**").permitAll()
-
-//                                        .requestMatchers(GET, "/user/**").hasRole(ADMIN.name())
-//                                        .requestMatchers(POST, "/user/**").hasRole(ADMIN.name())
-//                                        .requestMatchers(PUT, "/user/**").hasRole(ADMIN.name())
-//                                        .requestMatchers(DELETE, "/user/**").hasRole(ADMIN.name())
-
-                                        .requestMatchers(GET, "/user").permitAll()
-                                        .requestMatchers(POST, "/user").permitAll()
-                                        .requestMatchers(PUT, "/user/").permitAll()
-                                        .requestMatchers(DELETE, "/user").permitAll()
-
-                                        .requestMatchers(GET, "/user/**").permitAll()
-                                        .requestMatchers(POST, "/user/**").permitAll()
-                                        .requestMatchers(PUT, "/user/**").permitAll()
-                                        .requestMatchers(DELETE, "/user/**").permitAll()
+                                        .requestMatchers(GET, "/**").permitAll()
+                                        .requestMatchers(POST, "/**").permitAll()
+                                        .requestMatchers(PUT, "/**").permitAll()
+                                        .requestMatchers(DELETE, "/**").permitAll()
 
                                         .anyRequest().authenticated()
                 )

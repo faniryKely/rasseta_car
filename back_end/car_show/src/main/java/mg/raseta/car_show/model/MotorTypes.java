@@ -1,9 +1,12 @@
 package mg.raseta.car_show.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
+import java.util.List;
 
 @Data
 @Entity
@@ -19,5 +22,9 @@ public class MotorTypes {
 
     @Column(name = "name", nullable = false, unique = true)
     private String name;
+
+    @OneToMany(mappedBy = "motorTypes")
+    @JsonBackReference("motorTypes-car")
+    private List<Car> cars;
 
 }

@@ -23,12 +23,12 @@ public class Images {
 
     @ManyToOne
     @JoinColumn(name = "car_id")
-    @JsonBackReference
+    @JsonBackReference("car-image")
     private Car car;
 
     @ManyToOne
     @JoinColumn(name = "brand_id")
-    @JsonBackReference
+    @JsonBackReference("brand-image")
     private Brand brand;
 
 }

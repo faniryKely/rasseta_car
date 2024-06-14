@@ -1,5 +1,6 @@
 package mg.raseta.car_show.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -45,19 +46,22 @@ public class Car {
     private boolean status;
 
     @OneToMany(mappedBy = "car")
-    @JsonManagedReference
+    @JsonManagedReference("images-car")
     private List<Images> images;
 
     @ManyToOne
     @JoinColumn(name = "brand_id")
+    @JsonBackReference("brand-car")
     private Brand brand;
 
     @ManyToOne
     @JoinColumn(name = "car_type_id")
+    @JsonBackReference("carTypes-car")
     private CarTypes carTypes;
 
     @ManyToOne
     @JoinColumn(name = "motor_type_id")
+    @JsonManagedReference("motorTypes-car")
     private MotorTypes motorTypes;
 
 }

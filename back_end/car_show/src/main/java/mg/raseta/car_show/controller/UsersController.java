@@ -10,32 +10,33 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
 @RestController
-@RequestMapping("/user")
+@RequestMapping("/users")
 @AllArgsConstructor
-public class UserController {
-
+public class UsersController {
+    
     private final UserService userService;
     private final GenericModelSpecification<User> genericModelSpecification;
 
-    @PostMapping
-    public ResponseEntity<User> createUser(@RequestBody User user) {
-        User createdUser = userService.save(user);
-        return ResponseEntity.ok(createdUser);
-    }
-
     @GetMapping
     public ResponseEntity<List<User>> searchUser(
-            @RequestParam(name = "page", defaultValue = "0") int page,
-            @RequestParam(name = "perPage", defaultValue = "25") int perPage,
+            @RequestParam(name = "_start", defaultValue = "0") int start,
+            @RequestParam(name = "_end", defaultValue = "25") int end,
+            @RequestParam(name = "_order", defaultValue = "ASC") String order,
+            @RequestParam(name = "_sort", defaultValue = "id") String sort,
             @RequestParam(required = false) Integer userId,
             @RequestParam(required = false) String name,
             @RequestParam(required = false) String email,
-            @RequestParam(required = false) String password
+            @RequestParam(required = false) String password,
+            @RequestParam(defaultValue = "0") int page,
+            @RequestParam(defaultValue = "6") int limit
     )
     {
         Specification<User> specification = Specification.where(null);
@@ -53,7 +54,7 @@ public class UserController {
             specification = specification.and(genericModelSpecification.hasString(password, "password"));
         }
 
-        Pageable pageable = PageRequest.of(page, perPage);
+        Pageable pageable = PageRequest.of(page, limit);
         Page<User> userPage = userService.searchUser(specification, pageable);
 
         HttpHeaders headers = new HttpHeaders();
@@ -61,27 +62,5 @@ public class UserController {
 
         return ResponseEntity.ok().headers(headers).body(userPage.getContent());
     }
-
-    @GetMapping("/{id}")
-    public ResponseEntity<User> searchUserById(@PathVariable int id) {
-        User user = userService.findUserByUserId(id);
-        return ResponseEntity.ok(user);
-    }
-
-    @PutMapping("/{id}")
-    public ResponseEntity<User> updateUser(
-            @PathVariable int id,
-            @RequestBody User user
-    )
-    {
-        User updatedUser = userService.update(id, user);
-        return ResponseEntity.ok(updatedUser);
-    }
-
-    @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteUser(@PathVariable int id) {
-        userService.deleteById(id);
-        return ResponseEntity.noContent().build();
-    }
-
+    
 }

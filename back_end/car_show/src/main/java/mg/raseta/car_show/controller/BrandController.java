@@ -16,7 +16,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/car_show/brand")
+@RequestMapping("/brand")
 @AllArgsConstructor
 public class BrandController {
 
@@ -53,6 +53,11 @@ public class BrandController {
         headers.add("X-Total-Count", Long.toString(brandPage.getTotalElements()));
 
         return ResponseEntity.ok().headers(headers).body(brandPage.getContent());
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<Optional<Brand>> searchBrandByBrandId(@PathVariable int id) {
+        return ResponseEntity.ok(brandService.findById(id));
     }
 
     @PutMapping("/{id}")

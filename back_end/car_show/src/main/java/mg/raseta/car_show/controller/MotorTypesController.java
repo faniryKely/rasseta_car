@@ -13,9 +13,10 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
-@RequestMapping("/car_show/motorType")
+@RequestMapping("/motorType")
 @AllArgsConstructor
 public class MotorTypesController {
 
@@ -52,6 +53,11 @@ public class MotorTypesController {
         headers.add("X-Total-Count", Long.toString(motorTypesPage.getTotalElements()));
 
         return ResponseEntity.ok().headers(headers).body(motorTypesPage.getContent());
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<Optional<MotorTypes>> searchMotorTypeByMotorTypeId(@PathVariable int id) {
+        return ResponseEntity.ok(motorTypesService.findById(id));
     }
 
     @PutMapping("/{id}")

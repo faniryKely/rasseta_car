@@ -10,6 +10,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -17,17 +18,17 @@ import java.time.LocalDate;
 import java.util.List;
 
 @RestController
-@RequestMapping("/car_show/appointment")
+@RequestMapping("/appointment")
 @AllArgsConstructor
 public class AppointmentController {
 
     private final AppointmentService appointmentService;
     private final GenericModelSpecification<Appointment> genericModelSpecification;
 
-    @PostMapping
+    @PostMapping(consumes = "application/json", produces = "application/json")
     public ResponseEntity<Appointment> createAppointment(@RequestBody Appointment appointment) {
-        Appointment createAppointment = appointmentService.save(appointment);
-        return ResponseEntity.ok(createAppointment);
+        appointmentService.save(appointment);
+        return ResponseEntity.status(HttpStatus.CREATED).body(appointment);
     }
 
     @GetMapping

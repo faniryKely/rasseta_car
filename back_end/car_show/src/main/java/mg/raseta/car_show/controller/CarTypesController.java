@@ -13,9 +13,10 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
-@RequestMapping("/car_show/carType")
+@RequestMapping("/carType")
 @AllArgsConstructor
 public class CarTypesController {
 
@@ -52,6 +53,11 @@ public class CarTypesController {
         headers.add("X-Total-Count", Long.toString(carTypesPage.getTotalElements()));
 
         return ResponseEntity.ok().headers(headers).body(carTypesPage.getContent());
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<Optional<CarTypes>> searchCarTypeByCarTypeId(@PathVariable int id) {
+        return ResponseEntity.ok(carTypesService.findById(id));
     }
 
     @PutMapping("/{id}")

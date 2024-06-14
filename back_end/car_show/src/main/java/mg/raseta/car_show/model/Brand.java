@@ -1,9 +1,12 @@
 package mg.raseta.car_show.model;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
+import java.util.List;
 
 @Data
 @Entity
@@ -22,5 +25,9 @@ public class Brand {
 
     @Column(name = "logo_url")
     private String logoUrl;
+
+    @OneToMany(mappedBy = "brand")
+    @JsonManagedReference("brand-car")
+    private List<Car> cars;
 
 }

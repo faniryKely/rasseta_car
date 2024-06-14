@@ -22,4 +22,8 @@ public class UserService extends GenericService<User, Integer> {
         return userRepository.findAll(specification, pageable);
     }
 
+    public User findUserByUserId(int id) {
+        return userRepository.findUserByUserId(id);
+    }
+
 }

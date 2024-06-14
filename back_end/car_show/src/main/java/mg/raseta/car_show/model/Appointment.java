@@ -1,5 +1,7 @@
 package mg.raseta.car_show.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -35,6 +37,7 @@ public class Appointment {
     @Column(name = "contact", nullable = false)
     private String contact;
 
+    @JsonFormat(pattern = "yyyy-MM-dd")
     @Column(name = "appointment_date", nullable = false)
     private LocalDate appointmentDate;
 
@@ -44,6 +47,7 @@ public class Appointment {
 
     @ManyToOne
     @JoinColumn(name = "car_id")
+    @JsonBackReference("car-appointment")
     private Car car;
 
 }
